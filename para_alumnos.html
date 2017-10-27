@@ -139,6 +139,7 @@
 			$(val).removeClass("found")
 		});
 		$(".historial").append("<p>" + nombre + "</p>");
+		$(".seleccionados").append("<p>" + objetos.length + "</p>");
 		$.each(objetos, function(key, val) {
 			$(val).addClass("found");
 		});
