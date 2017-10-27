@@ -21,6 +21,9 @@
 	div{
 		margin-bottom: 4px;
 	}
+	.found {
+		background-color: green;
+	}
 	</style>
 
 	<script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
@@ -64,7 +67,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<div class="col-md-8">
@@ -113,6 +116,33 @@
 
 <script>
 	// Agregar las instrucciones JS para resolver el ejercicio aquí.
+	$("#boton").on('click', function() {
+		evalJquerySelector($("#camposelector"));
+	})
+	function evalJquerySelector(obj) {
+		nombre = obj.val();
+		objetos = $(nombre);
+		console.log(obj.val());
+		if(nombre == "") {
+			alert("No se ha ingresado texto");
+		}
+		if (objetos.length == 0 ) {
+			obj.val("");
+		} else {
+			setFound(nombre, objetos);
+		}
+	}
+	function setFound(nombre, objetos) {
+		elementoAnterior = $(".historial p").last().text();
+		objetosAnteriores = $(elementoAnterior);
+		$.each(objetosAnteriores, function(key, val) {
+			$(val).removeClass("found")
+		});
+		$(".historial").append("<p>" + nombre + "</p>");
+		$.each(objetos, function(key, val) {
+			$(val).addClass("found");
+		});
+	}
 </script>
 
 </body>
